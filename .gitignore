@@ -251,5 +251,4 @@ paket-files/
 .idea/
 *.sln.iml
 
-src/**/src/**/*.js
 .vscode

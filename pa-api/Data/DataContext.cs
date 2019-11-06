@@ -9,5 +9,6 @@ namespace pa_api.Data
 
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Livro> Livros { get; set; }
     }
 }

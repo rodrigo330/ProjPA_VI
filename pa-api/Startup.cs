@@ -30,7 +30,7 @@ namespace pa_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<DataContext>(x => x.UseSqlServer("Server=tcp:web171402.database.windows.net,1433;Initial Catalog=web;Persist Security Info=False;User ID=web171402;Password=01020304web!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+            ///services.AddDbContext<DataContext>(x => x.UseSqlServer("Server=tcp:web171402.database.windows.net,1433;Initial Catalog=web;Persist Security Info=False;User ID=web171402;Password=01020304web!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration["ConnectionString:DefaultConnection"]));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

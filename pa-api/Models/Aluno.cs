@@ -12,6 +12,8 @@ namespace pa_api.Models
         public int livrosDoados { get; set; }
         [Column(TypeName="Date")]
         public DateTime DataEntrada { get; set; }
+
+        
         public ICollection<Livro> Livros { get; set; }
     }
 }

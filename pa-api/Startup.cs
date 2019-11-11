@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using pa_api.Data;
 
 namespace pa_api
@@ -32,7 +34,10 @@ namespace pa_api
         {
             ///services.AddDbContext<DataContext>(x => x.UseSqlServer("Server=tcp:web171402.database.windows.net,1433;Initial Catalog=web;Persist Security Info=False;User ID=web171402;Password=01020304web!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration["ConnectionString:DefaultConnection"]));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => {
+        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+    });
 
             services.AddCors(options =>
             {

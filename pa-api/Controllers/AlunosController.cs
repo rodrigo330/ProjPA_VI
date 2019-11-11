@@ -37,11 +37,19 @@ namespace pa_api.Controllers
         [EnableCors("AllowAnyOrigin")]
         public async Task<IActionResult> GetValue(int id)
         {
-            var value = await _context.Alunos.FirstOrDefaultAsync(x => x.Id == id);
+            //var value = await _context.Alunos.FirstOrDefaultAsync(x => x.Id == id);
+            var value = await _context.Alunos.Include(x => x.Livros).FirstOrDefaultAsync(x => x.Id == id);
+
+            var livros = await _context.Livros.ToListAsync();
+            
+
+            //var aux = await _context.Livros.Where(l => l.AlunoID == id).ToListAsync();
+            //var value = await _context.Livros.Where(l => l.Aluno.Id == id).ToListAsync();
+
             return Ok(value);
         }
 
-        // POST api/values
+        // POST api/alunos
         [HttpPost]
         [EnableCors("AllowAnyOrigin")]
         public async Task<IActionResult> Post(Aluno aluno)
@@ -52,7 +60,9 @@ namespace pa_api.Controllers
             return StatusCode(201);
         }
 
-        // PUT api/values/5
+        
+
+        // PUT api/alunos/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, Aluno value)
         {
@@ -69,7 +79,7 @@ namespace pa_api.Controllers
             return StatusCode(400);
         }
 
-        // DELETE api/values/5
+        // DELETE api/alunos/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -83,6 +93,36 @@ namespace pa_api.Controllers
             return StatusCode(201);
 
 
+        }
+
+
+
+
+
+
+        // POST api/alunos
+        [HttpPost("{id}/add")]
+        [EnableCors("AllowAnyOrigin")]
+        public async Task<IActionResult> PostLivro(int id, Livro livro)
+        {
+            await _context.Livros.AddAsync(livro);
+            await _context.SaveChangesAsync();
+
+            return StatusCode(201);
+        }
+
+        // DELETE api/alunos/5
+        [HttpDelete("{id}/Delete")]
+        public async Task<IActionResult> DeleteLivro(int id, Livro livro)
+        {
+            Livro livro2 = await _context.Livros.FirstOrDefaultAsync(x => x.Id == livro.Id);
+            if(livro2 != null) {
+                _context.Livros.Remove(livro2);
+
+                await _context.SaveChangesAsync();
+            }
+
+            return StatusCode(201);
         }
     }
 }

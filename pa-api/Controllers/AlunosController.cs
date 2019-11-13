@@ -100,7 +100,11 @@ namespace pa_api.Controllers
 
 
 
-        // POST api/alunos
+
+
+
+
+        // POST api/alunos/5/add
         [HttpPost("{id}/add")]
         [EnableCors("AllowAnyOrigin")]
         public async Task<IActionResult> PostLivro(int id, Livro livro)
@@ -111,11 +115,11 @@ namespace pa_api.Controllers
             return StatusCode(201);
         }
 
-        // DELETE api/alunos/5
+        // DELETE api/alunos/5/delete
         [HttpDelete("{id}/Delete")]
-        public async Task<IActionResult> DeleteLivro(int id, Livro livro)
+        public async Task<IActionResult> DeleteLivro(int id)
         {
-            Livro livro2 = await _context.Livros.FirstOrDefaultAsync(x => x.Id == livro.Id);
+            Livro livro2 = await _context.Livros.FirstOrDefaultAsync(x => x.Id == id);
             if(livro2 != null) {
                 _context.Livros.Remove(livro2);
 

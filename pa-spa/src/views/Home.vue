@@ -17,7 +17,18 @@ export default {
   name: 'home',
   data () {
     return {
-      fields: ['id', 'nome', 'livrosDoados', 'dataEntrada'],
+      fields: [{
+        key: 'id',
+        sortable: true
+        },
+        {
+        key: 'nome',
+        sortable: true
+        },
+        {
+        key: 'dataEntrada',
+        sortable: true
+        }],
       alunos: []
     }
   },

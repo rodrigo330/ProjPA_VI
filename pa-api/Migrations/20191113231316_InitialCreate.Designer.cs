@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pa_api.Data;
@@ -10,22 +9,19 @@ using pa_api.Data;
 namespace pa_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190925221239_auth_identity")]
-    partial class auth_identity
+    [Migration("20191113231316_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity("pa_api.Models.Aluno", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DataEntrada")
                         .HasColumnType("Date");
@@ -39,11 +35,29 @@ namespace pa_api.Migrations
                     b.ToTable("Alunos");
                 });
 
+            modelBuilder.Entity("pa_api.Models.Livro", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AlunoID");
+
+                    b.Property<DateTime>("DataEntrada")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("Nome");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlunoID");
+
+                    b.ToTable("Livros");
+                });
+
             modelBuilder.Entity("pa_api.Models.User", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<byte[]>("PasswordHash");
 
@@ -54,6 +68,14 @@ namespace pa_api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("pa_api.Models.Livro", b =>
+                {
+                    b.HasOne("pa_api.Models.Aluno", "Aluno")
+                        .WithMany("Livros")
+                        .HasForeignKey("AlunoID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -64,6 +64,7 @@ export default {
         },
         axiosConfig,
         success: (response) => {
+          
           localStorage.setItem('Authorization', response.data.token)
         },
         error: function (res) {

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Cadastro from './views/Cadastro.vue'
 import Aluno from './views/Aluno.vue'
+import AlunoEditar from './views/AlunoEditar.vue'
 import Login from './views/Login.vue'
 
 Vue.use(Router)
@@ -39,6 +40,14 @@ export default new Router({
       path: '/Aluno/:alunoid',
       name: 'Aluno',
       component: Aluno,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/Aluno/:alunoid/editar',
+      name: 'AlunoEditar',
+      component: AlunoEditar,
       meta: {
         auth: true
       }

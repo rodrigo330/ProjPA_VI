@@ -11,10 +11,11 @@
             <b-nav-item href="/cadastro">Cadastrar Aluno</b-nav-item>
             <b-nav-item href="/aluno">Aluno</b-nav-item>
           </b-navbar-nav>
-          <!-- Search Bar -->
-          <b-navbar-nav class="ml-auto">
-          <b-form-input size="sm" class="mr-sm-2" v-model="Ra" placeholder="Search" v-on:keydown.enter="goTo"></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" v-on:click="goTo">Search</b-button>
+            <!-- Search Bar -->
+            <b-navbar-nav class="ml-auto">
+            <b-form-input size="sm" class="mr-sm-2" v-model="Ra" placeholder="Search" v-on:keydown.enter="goTo"></b-form-input>
+            <b-button size="sm" class="my-2 my-sm-0" v-on:click="goTo">Search</b-button>
+            <b-button v-if="isLogged()" size="sm" class="ml-2 my-2 my-sm-0" v-on:click="sair">Logout</b-button>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -44,6 +45,17 @@ export default {
     goTo: function (event) {
       this.$router.push('/aluno/' + this.Ra)
       window.location.reload()
+    },
+    sair: function (event) {
+      localStorage.setItem('Authorization', "")
+      this.$router.push('/login/')
+      window.location.reload()
+    },
+    isLogged: function (event){
+      if(localStorage.getItem('Authorization') == null){
+        return false
+      }
+      return true
     }
   }
 }

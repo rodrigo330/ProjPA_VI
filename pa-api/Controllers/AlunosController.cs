@@ -37,8 +37,8 @@ namespace pa_api.Controllers
         [EnableCors("AllowAnyOrigin")]
         public async Task<IActionResult> GetValue(int id)
         {
-            //var value = await _context.Alunos.FirstOrDefaultAsync(x => x.Id == id);
-            var value = await _context.Alunos.Include(x => x.Livros).FirstOrDefaultAsync(x => x.Id == id);
+            var value = await _context.Alunos.FirstOrDefaultAsync(x => x.Id == id);
+            //var value = await _context.Alunos.Include(x => x.Livros).FirstOrDefaultAsync(x => x.Id == id);
 
             var livros = await _context.Livros.ToListAsync();
             
@@ -109,6 +109,7 @@ namespace pa_api.Controllers
         [EnableCors("AllowAnyOrigin")]
         public async Task<IActionResult> PostLivro(int id, Livro livro)
         {
+            livro.DataEntrada = DateTime.Now;
             await _context.Livros.AddAsync(livro);
             await _context.SaveChangesAsync();
 

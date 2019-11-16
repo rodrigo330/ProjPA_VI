@@ -38,7 +38,7 @@ namespace pa_api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AlunoId");
+                    b.Property<int>("AlunoID");
 
                     b.Property<DateTime>("DataEntrada")
                         .HasColumnType("Date");
@@ -47,7 +47,7 @@ namespace pa_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AlunoId");
+                    b.HasIndex("AlunoID");
 
                     b.ToTable("Livros");
                 });
@@ -72,7 +72,8 @@ namespace pa_api.Migrations
                 {
                     b.HasOne("pa_api.Models.Aluno", "Aluno")
                         .WithMany("Livros")
-                        .HasForeignKey("AlunoId");
+                        .HasForeignKey("AlunoID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

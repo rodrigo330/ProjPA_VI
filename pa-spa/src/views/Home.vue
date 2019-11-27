@@ -24,10 +24,6 @@ export default {
         {
         key: 'nome',
         sortable: true
-        },
-        {
-        key: 'dataEntrada',
-        sortable: true
         }],
       alunos: []
     }

@@ -37,10 +37,10 @@ namespace pa_api.Controllers
         [EnableCors("AllowAnyOrigin")]
         public async Task<IActionResult> GetValue(int id)
         {
-            var value = await _context.Alunos.FirstOrDefaultAsync(x => x.Id == id);
-            //var value = await _context.Alunos.Include(x => x.Livros).FirstOrDefaultAsync(x => x.Id == id);
+            //var value = await _context.Alunos.FirstOrDefaultAsync(x => x.Id == id);
+            var value = await _context.Alunos.Include(x => x.Livros).FirstOrDefaultAsync(x => x.Id == id);
 
-            var livros = await _context.Livros.ToListAsync();
+            //var livros = await _context.Livros.ToListAsync();
             
 
             //var aux = await _context.Livros.Where(l => l.AlunoID == id).ToListAsync();
@@ -103,21 +103,48 @@ namespace pa_api.Controllers
 
 
 
+        // GET api/alunos/livro/5
+        //[EnableCors("AllowAnyOrigin")]
+        [HttpGet("livro/{id}")]
+        public async Task<IActionResult> GetValueLivro(int id)
+        {
+            //id = 8;
+            var value = await _context.Livros.FirstOrDefaultAsync(x => x.Id == id);
+
+            return Ok(value);
+        }
+
+        // PUT api/alunos/livro/5/edit
+        [HttpPut("livro/{id}/edit")]
+        public async Task<IActionResult> PutLivro(int id, Livro value)
+        {
+
+            Livro livro = await _context.Livros.FirstOrDefaultAsync(x => x.Id == id);
+            if(livro != null) {
+                livro.Nome =value.Nome;
+                livro.Data_Da_Doacao = value.Data_Da_Doacao;
+
+                await _context.SaveChangesAsync();
+                return StatusCode(201);
+            }
+            return StatusCode(400);
+        }
 
         // POST api/alunos/5/add
         [HttpPost("{id}/add")]
         [EnableCors("AllowAnyOrigin")]
         public async Task<IActionResult> PostLivro(int id, Livro livro)
         {
-            livro.DataEntrada = DateTime.Now;
+            if(livro.Data_Da_Doacao.ToString() == "01/01/0001 00:00:00")
+                livro.Data_Da_Doacao = DateTime.Now;
             await _context.Livros.AddAsync(livro);
             await _context.SaveChangesAsync();
 
             return StatusCode(201);
         }
 
-        // DELETE api/alunos/5/delete
-        [HttpDelete("{id}/Delete")]
+        // DELETE api/alunos/livro/5/delete
+        [HttpDelete("livro/{id}/Delete")]
         public async Task<IActionResult> DeleteLivro(int id)
         {
             Livro livro2 = await _context.Livros.FirstOrDefaultAsync(x => x.Id == id);

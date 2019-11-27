@@ -9,8 +9,8 @@ using pa_api.Data;
 namespace pa_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191113231316_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20191118214556_initial_migration")]
+    partial class initial_migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,7 +42,7 @@ namespace pa_api.Migrations
 
                     b.Property<int>("AlunoID");
 
-                    b.Property<DateTime>("DataEntrada")
+                    b.Property<DateTime>("Data_Da_Doacao")
                         .HasColumnType("Date");
 
                     b.Property<string>("Nome");

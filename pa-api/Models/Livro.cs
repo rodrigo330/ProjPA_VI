@@ -9,7 +9,7 @@ namespace pa_api.Models
         public int AlunoID { get; set; }        
         public Aluno Aluno { get; set; }
         [Column(TypeName="Date")]
-        public DateTime DataEntrada { get; set; }
+        public DateTime Data_Da_Doacao { get; set; }
 
     }
 }

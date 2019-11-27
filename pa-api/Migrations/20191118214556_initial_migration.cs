@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace pa_api.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initial_migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,7 +45,7 @@ namespace pa_api.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(nullable: true),
                     AlunoID = table.Column<int>(nullable: false),
-                    DataEntrada = table.Column<DateTime>(type: "Date", nullable: false)
+                    Data_Da_Doacao = table.Column<DateTime>(type: "Date", nullable: false)
                 },
                 constraints: table =>
                 {

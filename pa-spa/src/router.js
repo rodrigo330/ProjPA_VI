@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Cadastro from './views/Cadastro.vue'
 import Aluno from './views/Aluno.vue'
 import AlunoEditar from './views/AlunoEditar.vue'
+import LivroEditar from './views/LivroEditar.vue'
 import Login from './views/Login.vue'
 
 Vue.use(Router)
@@ -48,6 +49,14 @@ export default new Router({
       path: '/Aluno/:alunoid/editar',
       name: 'AlunoEditar',
       component: AlunoEditar,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/Livro/:livroid',
+      name: 'livro',
+      component: LivroEditar,
       meta: {
         auth: true
       }

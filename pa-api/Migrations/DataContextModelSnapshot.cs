@@ -40,7 +40,7 @@ namespace pa_api.Migrations
 
                     b.Property<int>("AlunoID");
 
-                    b.Property<DateTime>("DataEntrada")
+                    b.Property<DateTime>("Data_Da_Doacao")
                         .HasColumnType("Date");
 
                     b.Property<string>("Nome");

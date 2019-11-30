@@ -48,7 +48,6 @@ export default {
     },
     getGraphData: function () {
       axios.get('https://localhost:5001/api/alunos/livro/graph').then((response) => {
-        console.log(response.data);
         response.data.forEach(element => {
           if(element.year == new Date().getFullYear()){
             this.chartOptions.xaxis.categories.push(element.month + '/' + element.year)

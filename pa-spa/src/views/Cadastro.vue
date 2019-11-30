@@ -14,9 +14,6 @@
                                 <b-form-input v-model="form.id" placeholder="Digite o RA" required></b-form-input>
                             </b-form-group>
 
-                            <b-form-group label="Data de entrada na faculdade">
-                                <b-form-input v-model="form.dataEntrada" type="date" placeholder="Digite a data que o aluno entrou na faculdade" required></b-form-input>
-                            </b-form-group>
                             <b-button type="submit" variant="primary">Cadastrar</b-button>
                             <b-button type="reset" variant="danger">Resetar</b-button>
                         </b-form>
@@ -35,7 +32,7 @@ export default {
       form: {
         nome: '',
         id: '',
-        dataEntrada: '',
+        dataEntrada: '01/01/0001',
         livrosDoados: 0
       }
     }
@@ -44,8 +41,7 @@ export default {
     formSubmit (e) {
       e.preventDefault()
       let currentObj = this
-      this.axios.post('http://localhost:5000/api/alunos', currentObj.form)
-      //this.$router.push('/')
+      this.axios.post('http://localhost:5000/api/alunos', currentObj.form).then(() => {this.$router.push('/aluno/' + this.form.id)})
       //window.location.reload()
     }
   }

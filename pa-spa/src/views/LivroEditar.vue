@@ -4,11 +4,7 @@
             <b-row>
                 <b-col sm="6" offset="3">
                     <b-jumbotron>
-                        <!--
-                        <h1>{{$route.params.livroid}}</h1>
-                        <h1>{{livro}}</h1>
-                        -->
-                        
+                        <h1>Editar Livro</h1>
                         <b-form-group label="Nome do Livro" label-for="nome">
                             <b-form-input id="nome" v-model="livro.nome"  required></b-form-input>
                         </b-form-group>

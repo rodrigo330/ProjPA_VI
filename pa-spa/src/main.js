@@ -4,6 +4,8 @@ import VueAuth from '@websanova/vue-auth'
 import VueAuthOptions from './auth'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
+import VueApexCharts from 'vue-apexcharts'
+
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -17,6 +19,9 @@ Vue.router = router
 Vue.use(BootstrapVue)
 Vue.use(VueAxios, axios)
 Vue.use(VueAuth, VueAuthOptions)
+Vue.use(VueApexCharts)
+
+Vue.component('apexchart', VueApexCharts)
 
 Vue.config.productionTip = false
 

@@ -156,5 +156,21 @@ namespace pa_api.Controllers
 
             return StatusCode(201);
         }
+
+        // GET api/alunos/graph
+        [HttpGet("livro/graph")]
+        public async Task<IActionResult> GetGraphValues()
+        {
+            //var value = await _context.Livros.GroupBy(l => l.Data_Da_Doacao).Select(l => new { name = l.Key, count = l.Count() }).ToListAsync();
+            var value = await _context.Livros.GroupBy(x => new {Year = x.Data_Da_Doacao.Year, Month = x.Data_Da_Doacao.Month})
+                .Select(x => new
+                {
+                    Value = x.Count(),
+                    Year = x.Key.Year,
+                    Month = x.Key.Month
+                }).ToListAsync();
+
+            return Ok(value);
+        }
     }
 }

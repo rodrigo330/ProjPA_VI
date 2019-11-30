@@ -6,6 +6,8 @@ import Aluno from './views/Aluno.vue'
 import AlunoEditar from './views/AlunoEditar.vue'
 import LivroEditar from './views/LivroEditar.vue'
 import Login from './views/Login.vue'
+import test from './views/test.vue'
+
 
 Vue.use(Router)
 
@@ -57,6 +59,14 @@ export default new Router({
       path: '/Livro/:livroid',
       name: 'livro',
       component: LivroEditar,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: test,
       meta: {
         auth: true
       }

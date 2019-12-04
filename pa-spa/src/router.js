@@ -6,6 +6,7 @@ import Aluno from './views/Aluno.vue'
 import AlunoEditar from './views/AlunoEditar.vue'
 import LivroEditar from './views/LivroEditar.vue'
 import Login from './views/Login.vue'
+import Admin from './views/CriarUsuarioAdmin.vue'
 
 
 Vue.use(Router)
@@ -60,6 +61,14 @@ export default new Router({
       component: LivroEditar,
       meta: {
         auth: true
+      }
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin,
+      meta: {
+        auth: undefined
       }
     }
   ]

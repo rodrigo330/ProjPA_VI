@@ -10,5 +10,7 @@ namespace pa_api.Data
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Livro> Livros { get; set; }
+        public DbSet<Marca> Marcas { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
     }
 }

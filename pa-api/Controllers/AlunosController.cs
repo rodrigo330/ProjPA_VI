@@ -12,7 +12,7 @@ using pa_api.Models;
 namespace pa_api.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     [ApiController]
 
     public class AlunosController : ControllerBase
